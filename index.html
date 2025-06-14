@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+    <script>
+
+     
+        function criarTask() {
+         const entrada = document.getElementById("entrada");
+         const mensagen = document.getElementById("mensagem");
+         const menu = document.getElementById("menu");
+
+
+         const texto = entrada.value.trim();
+
+         if (texto === '') {
+            mensagen.innerText = "No tasks to send.";
+         } else {
+            const botao = document.createElement("button");
+            botao.innerText = "Excluir";
+            botao.onclick = function () {
+                item.remove();
+            }
+
+
+
+        const item = document.createElement("li");
+        item.innerText = texto;
+        item.appendChild(botao);
+
+        menu.appendChild(item);
+
+        entrada.value = "";
+        mensagen.innerText = "";
+
+
+         }
+    }
+
+    function adicionarBotaoEditar(tarefa) {
+      const botaoEditar = document.createElement("button");
+      botaoEditar.innerText = "Editar";
+
+      botaoEditar.onclick = () => {
+        const novoTexto = prompt("Editar tarefa:", tarefa.firstchild.textContent);
+        if (novoTexto) {
+          tarefa.firstchild.textContent = novoTexto;
+          salvarTarefas();
+        }
+      };
+
+      tarefa.appendChild(botaoEditar);
+
+
+    function filtrarTarefas(status){
+       const tarefas = document.querySelectorAll("#menu li");
+    
+       tarefas.forEach(tarefa =>{
+         
+          switch(status){
+            case "todas":
+                tarefa.style.display = "list-item";
+                break;
+            case "concluidas":
+
+                tarefa.style.display = tarefa.classList.contains("concluidas") ? "list-item" : "none";
+                break;
+            case "pendentes":
+
+                tarefa.style.display = !tarefa.classList.contains("concluida") ? "list-item" : "none";
+                break;
+          }
+       }
+
+       }
+    }
+
+
+
+
+    }
+
+    </script>
+</body>
+</html>
